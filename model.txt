@@ -1,0 +1,27 @@
+model = Sequential()  
+  
+model.add(Conv2D(64, kernel_size=(3, 3), activation='relu', padding='same',input_shape=(X_train.shape[1:])))  
+model.add(MaxPooling2D(pool_size=(2,2), strides=(2, 2)))  
+model.add(Dropout(0.5))  
+  
+#2nd convolution layer  
+model.add(Conv2D(64, (3, 3), activation='relu' ,padding='same'))  
+model.add(MaxPooling2D(pool_size=(2,2), strides=(2, 2)))  
+model.add(Dropout(0.5))  
+  
+#3rd convolution layer  
+model.add(Conv2D(128, (3, 3), activation='relu',padding='same'))  
+model.add(MaxPooling2D(pool_size=(2,2), strides=(2, 2)))  
+model.add(Dropout(0.5))  
+
+
+
+model.add(Flatten())  
+
+#fully connected neural networks  
+model.add(Dense(1024, activation='relu'))  
+model.add(Dropout(0.2))  
+model.add(Dense(1024, activation='relu'))  
+model.add(Dropout(0.2))  
+  
+model.add(Dense(num_labels, activation='softmax'))  
